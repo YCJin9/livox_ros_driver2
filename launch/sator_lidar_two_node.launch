@@ -1,0 +1,16 @@
+<launch>
+
+	<arg name="rviz_enable" default="false"/>
+
+	<!-- Launch front lidar -->
+	<include file="$(find livox_ros_driver2)/launch/sator_lidar_front.launch"/>
+
+	<!-- Launch rear lidar -->
+	<include file="$(find livox_ros_driver2)/launch/sator_lidar_rear.launch"/>
+
+	<group if="$(arg rviz_enable)">
+		<node name="rviz" pkg="rviz" type="rviz" respawn="true"
+				args="-d $(find livox_ros_driver2)/config/display_point_cloud_ROS1.rviz"/>
+    </group>
+
+</launch>
